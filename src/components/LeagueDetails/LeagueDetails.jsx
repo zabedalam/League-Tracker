@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Box, Grid, CardMedia, makeStyles, Paper } from "@material-ui/core";
 import { useParams } from "react-router";
+import ClassNames from "classnames";
 import Male from "../../images/male.png";
 import Female from "../../images/male.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
+import { faFlag, faFutbol, faMars } from "@fortawesome/free-solid-svg-icons";
 import {
   faTwitterSquare,
   faYoutube,
@@ -13,25 +16,56 @@ import {
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: "#1a237e",
-    // flexGrow: 1,
     height: "auto",
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    flexGrow: 1,
+  },
+  icons: {
+    marginTop: 30,
+    marginLeft: 50,
+    paddingBottom: 30,
+    fontSize: 30
+  },
+  bannerBadge: {
+    // display: "block",
+    // justifyContent: "center",
+    // borderRadius:20,
+    width:"100%",
+    margin:"auto"
+
+  },
+  bannerDynamic: {
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    width: "100w",
+    // height: "auto",
+    height: 250,
+    marginBottom: 5,
+   
+  },
+  fanart: {
+    width: "400px",
+    height: "180px"
+  },
+  trophy: {
+    marginLeft: "20px"
+  },
+  img: {
+    height: "200px",
+    width: "150px"
   },
 
   cardInfo: {
-    display: "flex",
-    // height: "auto",
     width: "80%",
     margin: "auto",
-    justifyContent: "center",
     backgroundColor: theme.palette.primary.light,
     color: "white",
     borderRadius: 10
   },
 
   imgInfo: {
-    // height: "auto",
-    width: "70%",
+    height: "auto",
+    width: "80%",
     margin: 10
   }
 }));
@@ -68,25 +102,57 @@ const LeagueDetails = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Box className={classes.cardInfo}>
-        <Grid item xs={12} md={5}>
-          <Box
-            display="flex"
-            flexDirection="column"
-            //   justifyContent="space-between"
-            height="100%"
-          >
+      <div className={classes.bannerBadge}>
+        {/* <div className={classes.bannerDynamic}>
+          <img className={classes.img} src={strBadge}></img> */}
+          {/* <img
+            className={ClassNames(classes.img, classes.fanart)}
+            src={strFanart1}
+          ></img>
+          <img
+            className={ClassNames(classes.img, classes.trophy)}
+            src={strTrophy}
+          ></img> */}
+        {/* </div> */}
+        <div
+          className={classes.bannerDynamic}
+          style={{ backgroundImage: `url(${strBanner})`  }}
+        ></div>
+      </div>
+      <Grid
+        className={classes.cardInfo}
+        container
+        spacing={2}
+        direction="row"
+        justify="center"
+      >
+        <Grid item sm={12} md={6}>
+          <div display="flex" flexDirection="column" height="100%">
             <h4>{strLeague}</h4>
-            <p>Founded:{intFormedYear}</p>
-            <p>Country:{strCountry}</p>
-            <p>Sport Type:{strSport}</p>
-            <p>Gender:{strGender}</p>
-          </Box>
+            <p>
+              <FontAwesomeIcon color="#ff8f00" icon={faThumbtack} />
+              Founded : {intFormedYear}
+            </p>
+            <p>
+              <FontAwesomeIcon color="#ff8f00" icon={faFlag} />
+              Country : {strCountry}
+            </p>
+            <p>
+              <FontAwesomeIcon color="#ff8f00" icon={faFutbol} />
+              Sport Type : {strSport}
+            </p>
+            <p>
+              <FontAwesomeIcon color="#ff8f00" icon={faMars} />
+              Gender : {strGender}
+            </p>
+          </div>
         </Grid>
-        <Grid xs={12} md={7}>
-          <img className={classes.imgInfo} src={genderImage} />
+        <Grid item sm={12} md={6}>
+          <div>
+            <img className={classes.imgInfo} src={genderImage} />
+          </div>
         </Grid>
-      </Box>
+      </Grid>
       <Box>
         <Grid item xs={12} md={12}>
           <Box
@@ -111,34 +177,28 @@ const LeagueDetails = () => {
           </Box>
         </Grid>
       </Box>
-      <Box
-        display="flex"
-        flexDirection="row"
-        width="100%"
-        margin="auto"
-        justifyContent="center"
-        color="white"
-      >
-        <Grid item xs={12} md={12}>
-          <Box>
-            <a href="https://twitter.com/">
-              <FontAwesomeIcon icon={faTwitterSquare} />
-            </a>
-          </Box>
-          <Box>
-            <a href="https://www.youtube.com/">
-              {" "}
-              <FontAwesomeIcon icon={faYoutube} />
-            </a>
-          </Box>
-          <Box>
-            <a href="https://www.facebook.com/">
-              {" "}
-              <FontAwesomeIcon icon={faFacebook} />
-            </a>
-          </Box>
-        </Grid>
-      </Box>
+
+      <Grid container direction="row" justify="center" display="flex">
+        {/* <Grid item xs={12} md={4}> */}
+        <div className={classes.icons}>
+          <a href="https://twitter.com/">
+            <FontAwesomeIcon color="white" icon={faTwitterSquare} />
+          </a>
+        </div>
+        <div className={classes.icons}>
+          <a href="https://www.youtube.com/">
+            {" "}
+            <FontAwesomeIcon color="white" icon={faYoutube} />
+          </a>
+        </div>
+        <div className={classes.icons}>
+          <a href="https://www.facebook.com/">
+            {" "}
+            <FontAwesomeIcon color="white" icon={faFacebook} />
+          </a>
+        </div>
+        {/* </Grid> */}
+      </Grid>
     </div>
   );
 };
